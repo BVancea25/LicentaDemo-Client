@@ -18,8 +18,8 @@ function ProductList({ products }) {
         {products.map((product) => (
           <div className='product-card' key={product.productId}>
             <h3 className='text'>{product.name}</h3>
-            <p className='text'>Brand: {product.brand}</p>
-            {isNumber(auth.userId)===true ?<Link to={`/details/${product.productId}`}>View Details</Link>:<Link to={`/login`}>Log In</Link>}
+            <img src={`http://localhost:8080/images/${product.productId}.jpg`} className='image-container' alt=''></img>
+            {isNumber(auth.userId)===true ?<Link  className='button-link' to={`/details/${product.productId}`}>View Details</Link>:<Link className='button-link' to={`/login`}>Log In</Link>}
           </div>
         ))}
       </div>

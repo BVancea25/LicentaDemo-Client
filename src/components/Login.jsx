@@ -15,8 +15,14 @@ const Login=()=>{
         axios.post("http://localhost:8080/auth/authenticate",{email:email,password:pass})
             .then((res)=>{
                 if(res.status===200){
+
                     const userId=res.data.userId
-                    setAuth({userId})
+                    axios.get("http://localhost:5000/csrf-token")
+                    .then((res)=>{
+                       const csrf=res.data.csrf_token
+                        setAuth({userId,csrf})
+                    })
+                    
                     nav("/")
                 }
             })

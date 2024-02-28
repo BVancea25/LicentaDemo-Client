@@ -16,8 +16,10 @@ const Recommendation=({recommendations})=>{
 
         <div className='rec-details-container'>
             {recommendations.map((rec)=>(
-                <div style={{marginRight:"20px",marginTop:"15px",border:"1px solid", padding:"5px"}} key={rec.id} onClick={()=>redirect(rec.id)}>
-
+                <div style={{marginRight:"20px",marginTop:"15px",border:"1px solid", padding:"5px", width:'250px'}} key={rec.id} onClick={()=>redirect(rec.id)}>
+                <div className='image-container'>
+                    <img src={`http://localhost:8080/images/${rec.id}.jpg`} alt=''></img>
+                </div>
                 <p className='text'>Name: {rec.name}</p>
                 <p className='text'>Brand: {rec.brand}</p>
                 <p className='text'>Type: {rec.type}</p>

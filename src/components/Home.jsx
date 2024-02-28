@@ -13,10 +13,14 @@ const  Home=()=>{
     const getRec=()=>{
       
       if(auth.userId===undefined){
-          axios.get("http://localhost:5000/rec",{
-            params:{
+          axios.post("http://localhost:5000/rec",{
+            
               user_id:"none"
-            }
+            
+            },{
+              headers:{
+                'X-CSRFToken':auth.csrf
+              }
             }
             )
           .then((res)=>{
@@ -26,9 +30,12 @@ const  Home=()=>{
             console.log(err);
           })
         }else{
-          axios.get("http://localhost:5000/rec",{
-            params:{
+          axios.post("http://localhost:5000/rec",{
+            
               user_id:auth.userId
+        },{
+            headers:{
+              'X-CSRFToken':auth.csrf
             }
             }
             )
@@ -53,6 +60,7 @@ const  Home=()=>{
         .catch((err)=>{
           console.error(err);
         })
+      
         getRec()
     }, []);
   

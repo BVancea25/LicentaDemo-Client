@@ -59,13 +59,14 @@ button {
 }
 
 .product-info{
-  margin-top: 20%;
+  margin-top: 5%;
   margin-left: 30%;
   margin-right: 30%;
-  margin-bottom: 30%;
-  height: 35vh; /* Set the height to fill the viewport height */
+  margin-bottom: 20%;
+ /* height: 600px; /* Set the height to fill the viewport height */
   overflow-y: auto; /* Enable vertical scrolling if content exceeds viewport height */
   border: 1px solid white;
+ 
 }
 
 .review-section {
@@ -114,8 +115,37 @@ button {
 }
 
 .product-card {
-  width: 23%; /* Adjust as needed */
+  width: 12%; /* Adjust as needed */
   margin-bottom: 20px; /* Adjust spacing between rows */
+  flex-wrap: wrap;
   border: 1px solid;
   padding:3px;
+  display: table-column;
+}
+
+.image-container {
+ 
+  height: 200px; /* Adjust as needed */
+  display: flex;
+  max-width: 90%;
+  margin-bottom: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+ height: auto; /* Ensures the image covers the entire container */
+}
+
+.button-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ffff; /* Change to your desired button color */
+  color: #176B87; /* Change to your desired text color */
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
 }

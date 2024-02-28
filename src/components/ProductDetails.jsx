@@ -17,12 +17,12 @@ const ProductDetails = () => {
     const [Loading,setLoading]=useState(true);
 
     const submitReview=()=>{
-        sendAction("REVIEWD")
+        sendAction("REVIEWED")
 
         axios.post(`http://localhost:8080/review/${id}/${auth.userId}`,{rating:reviewRating,comment:reviewText})
         .then(()=>{
-            setReviewText('');
-            setReviewRating(0);
+            //setReviewText('');
+            //setReviewRating(0);
             axios.get(`http://localhost:8080/review/${id}`)
                 .then((res)=>{
                     setReviews(res.data);
@@ -42,17 +42,18 @@ const ProductDetails = () => {
        
         const weight = setWeight(action);
         if(action==="REVIEWED"){
-            axios.get("http://localhost:5000/rec/service", {
-                params: {
+            axios.post("http://localhost:5000/rec/service", {
+                
                     user_id: auth.userId,
                     product_id: id,
                     action: action,
                     weight: weight,
                     review:reviewText,
                     rating:reviewRating
-                },
+        },{
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken':auth.csrf
                 }
             })
             .then((res) => {
@@ -63,15 +64,16 @@ const ProductDetails = () => {
             });
         }else{
             
-            axios.get("http://localhost:5000/rec/service", {
-                params: {
+            axios.post("http://localhost:5000/rec/service", {
+                
                     user_id: auth.userId,
                     product_id: id,
                     action: action,
                     weight: weight
-                },
+        },{
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken':auth.csrf
                 }
             })
             .then((res) => {
@@ -137,6 +139,8 @@ const ProductDetails = () => {
 
                 <Recommendation recommendations={recommendations} />
                 <div className='product-info' key={product.productId}>
+                    <div className='image-container' style={{marginLeft:"32%"}}><img src={`http://localhost:8080/images/${product.productId}.jpg`}></img></div>
+                    
                     <p className='text'>Name: {product.name}</p>
                     <p className='text'>Brand: {product.brand}</p>
                     <p className='text'>Type: {product.type}</p>
