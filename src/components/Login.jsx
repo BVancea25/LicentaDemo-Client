@@ -30,6 +30,9 @@ const Login=()=>{
                 console.log(err)
             })
     }
+    const redirect=()=>{
+        nav(`/register`)
+    }
 
     return (
         <div className="auth-form-container">
@@ -40,6 +43,7 @@ const Login=()=>{
                 <label htmlFor="password">password</label>
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
                 <button type="submit">Log In</button>
+                <button style={{marginTop:'5px'}} onClick={()=>redirect()}>Don't have an account?</button>
             </form>
         </div>
     )

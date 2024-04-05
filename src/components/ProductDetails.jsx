@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Rating from 'react-rating-stars-component';
 import Recommendation from './Recommendation';
+import { useNavigate } from 'react-router-dom'
 import "../App.css"
 
 const ProductDetails = () => {
@@ -15,6 +16,7 @@ const ProductDetails = () => {
     const [reviewRating,setReviewRating]=useState(0);
     const [recommendations, setRecommendations] = useState([]);
     const [Loading,setLoading]=useState(true);
+    const nav=useNavigate()
 
     const submitReview=()=>{
         sendAction("REVIEWED")
@@ -36,6 +38,10 @@ const ProductDetails = () => {
         })
 
         
+    }
+
+    const redirect=()=>{
+        nav("/")
     }
 
     const sendAction = (action) => {
@@ -136,8 +142,10 @@ const ProductDetails = () => {
 
     return (
         <div className='product-details-container'>
-
+                
+                
                 <Recommendation recommendations={recommendations} />
+                <button style={{marginLeft:"40%",marginRight:"40%",marginTop:"2%"}} onClick={()=>redirect()}>Back to main page</button>
                 <div className='product-info' key={product.productId}>
                     <div className='image-container' style={{marginLeft:"32%"}}><img src={`http://localhost:8080/images/${product.productId}.jpg`}></img></div>
                     
@@ -149,6 +157,7 @@ const ProductDetails = () => {
                     <button style={{marginRight:"5px"}} onClick={() => sendAction("BOUGHT")} className='text'>Buy</button>
                     <button onClick={() => sendAction("WISHLISTED")} className='text'>Add to wishlist</button>
                 </div>
+                
                 <div className='review-section'>
                     
                     <div className='review-list'>

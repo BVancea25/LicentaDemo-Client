@@ -19,7 +19,7 @@ function ProductList({ products }) {
           <div className='product-card' key={product.productId}>
             <h3 className='text'>{product.name}</h3>
             <img src={`http://localhost:8080/images/${product.productId}.jpg`} className='image-container' alt=''></img>
-            {isNumber(auth.userId)===true ?<Link  className='button-link' to={`/details/${product.productId}`}>View Details</Link>:<Link className='button-link' to={`/login`}>Log In</Link>}
+            {isNumber(auth.userId)===true ?<Link  className='button-link' to={`/details/${product.productId}`}>View Details</Link>:<Link className='button-link' to={`/login`}>View Details</Link>}
           </div>
         ))}
       </div>

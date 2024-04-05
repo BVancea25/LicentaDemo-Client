@@ -12,6 +12,12 @@ const Recommendation=({recommendations})=>{
         nav(`/details/${productId}`)
     }
 
+    
+        
+    
+
+    
+
     return(
 
         <div className='rec-details-container'>
